@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rodrigo Noriega — Aerospace Engineer</title>
+<meta name="description" content="Portfolio of Rodrigo Noriega, Aerospace Engineering student at UC Irvine — thermal vacuum systems, aircraft restoration, and controls.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue-deep:#102A4C;
+    --blue-mid:#173860;
+    --blue-line:rgba(237,241,237,0.14);
+    --blue-line-strong:rgba(237,241,237,0.32);
+    --ink:#EDF1ED;
+    --ink-dim:#9FB3C9;
+    --paper:#ECE7DA;
+    --paper-edge:#D8D1BF;
+    --paper-ink:#1B2230;
+    --paper-ink-dim:#5B5A4E;
+    --hazard:#E2622C;
+    --hazard-dim:#B14A20;
+    --ok:#5C9A6B;
+    --bar-h:64px;
+    --sidebar-w:188px;
+    --display: "Big Shoulders", sans-serif;
+    --mono: "IBM Plex Mono", monospace;
+    --body: "IBM Plex Sans", sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:var(--body);
+    background:var(--blue-deep);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  ul{margin:0;padding:0;list-style:none;}
+  h1,h2,h3{margin:0;font-family:var(--display);font-weight:700;text-transform:uppercase;}
+  p{margin:0;}
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+  }
+
+  /* ---------- Sheet index (nav) ---------- */
+  .sheet-index{
+    position:fixed;
+    top:0; left:0; bottom:0;
+    width:var(--sidebar-w);
+    background:var(--blue-mid);
+    border-right:1px solid var(--blue-line-strong);
+    display:flex;
+    flex-direction:column;
+    z-index:50;
+  }
+  .sheet-index__brand{
+    padding:22px 20px 16px;
+    font-family:var(--display);
+    font-weight:800;
+    font-size:22px;
+    letter-spacing:0.04em;
+    border-bottom:1px solid var(--blue-line-strong);
+    color:var(--ink);
+  }
+  .sheet-index__brand span{color:var(--hazard);}
+  .sheet-index__list{
+    flex:1;
+    padding:14px 0;
+    overflow-y:auto;
+  }
+  .sheet-index__list a{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:10px 20px;
+    text-decoration:none;
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--ink-dim);
+    letter-spacing:0.04em;
+    border-left:2px solid transparent;
+    transition:color .15s ease, border-color .15s ease, background .15s ease;
+  }
+  .sheet-index__list a:hover{color:var(--ink); background:rgba(237,241,237,0.04);}
+  .sheet-index__list a.is-active{
+    color:var(--ink);
+    border-left-color:var(--hazard);
+    background:rgba(226,98,44,0.08);
+  }
+  .sheet-index__num{color:var(--hazard); font-weight:600;}
+  .sheet-index__foot{
+    padding:14px 20px 18px;
+    font-family:var(--mono);
+    font-size:10.5px;
+    color:var(--ink-dim);
+    border-top:1px solid var(--blue-line-strong);
+    letter-spacing:0.03em;
+  }
+
+  main{margin-left:var(--sidebar-w);}
+
+  /* ---------- Generic sheet ---------- */
+  .sheet{
+    position:relative;
+    padding:64px 7vw 72px;
+    scroll-margin-top:20px;
+    border-bottom:1px solid var(--blue-line-strong);
+  }
+  .sheet--blue{
+    background-color:var(--blue-deep);
+    background-image:
+      linear-gradient(to right, var(--blue-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--blue-line) 1px, transparent 1px);
+    background-size:28px 28px;
+    color:var(--ink);
+  }
+  .sheet--paper{
+    background:var(--paper);
+    color:var(--paper-ink);
+    border-bottom:1px solid var(--paper-edge);
+  }
+  .sheet__inner{max-width:1080px; margin:0 auto;}
+
+  .sheet__bar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    border-top:1px solid var(--blue-line-strong);
+    border-bottom:1px solid var(--blue-line-strong);
+    margin-bottom:40px;
+  }
+  .sheet--paper .sheet__bar{
+    border-top:1px solid var(--paper-edge);
+    border-bottom:1px solid var(--paper-edge);
+  }
+  .sheet__bar-field{
+    padding:9px 18px;
+    border-right:1px solid var(--blue-line-strong);
+    color:var(--ink-dim);
+  }
+  .sheet--paper .sheet__bar-field{
+    border-right:1px solid var(--paper-edge);
+    color:var(--paper-ink-dim);
+  }
+  .sheet__bar-field b{
+    display:block;
+    color:var(--ink);
+    font-weight:600;
+    margin-top:2px;
+    letter-spacing:0.04em;
+  }
+  .sheet--paper .sheet__bar-field b{color:var(--paper-ink);}
+
+  .sheet__title{
+    font-size:clamp(28px,3.4vw,42px);
+    line-height:1;
+    letter-spacing:0.01em;
+    margin-bottom:28px;
+  }
+
+  /* ---------- Cover / hero ---------- */
+  .sheet--cover{padding-top:88px; padding-bottom:96px;}
+  .cover-grid{
+    display:grid;
+    grid-template-columns:1.3fr 0.9fr;
+    gap:48px;
+    align-items:center;
+  }
+  .cover-name{
+    font-size:clamp(46px,7.2vw,84px);
+    line-height:0.96;
+    letter-spacing:0.01em;
+    margin:14px 0 18px;
+  }
+  .cover-role{
+    font-family:var(--mono);
+    font-size:15px;
+    color:var(--hazard);
+    letter-spacing:0.04em;
+    margin-bottom:22px;
+  }
+  .cover-desc{
+    max-width:520px;
+    font-size:16px;
+    line-height:1.6;
+    color:var(--ink-dim);
+    margin-bottom:34px;
+  }
+  .cover-cta{display:flex; gap:14px; flex-wrap:wrap;}
+  .id-frame{position:relative; width:92px; height:92px; margin-bottom:24px;}
+  .id-frame img{width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(8%) contrast(1.04);}
+  .id-frame__corner{position:absolute; width:14px; height:14px; border:2px solid var(--hazard);}
+  .id-frame__corner--tl{top:-5px; left:-5px; border-right:none; border-bottom:none;}
+  .id-frame__corner--tr{top:-5px; right:-5px; border-left:none; border-bottom:none;}
+  .id-frame__corner--bl{bottom:-5px; left:-5px; border-right:none; border-top:none;}
+  .id-frame__corner--br{bottom:-5px; right:-5px; border-left:none; border-top:none;}
+  .btn{
+    font-family:var(--mono);
+    font-size:12.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    text-decoration:none;
+    padding:13px 22px;
+    border:1px solid var(--blue-line-strong);
+    display:inline-block;
+    transition:transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn--solid{background:var(--hazard); border-color:var(--hazard); color:#11151b; font-weight:600;}
+  .btn--solid:hover{background:#ee703c;}
+  .btn--ghost{color:var(--ink); border-color:var(--blue-line-strong);}
+  .btn--ghost:hover{border-color:var(--hazard); color:var(--hazard);}
+
+  /* gauge */
+  .gauge-wrap{display:flex; flex-direction:column; align-items:center;}
+  .gauge-wrap svg{width:100%; max-width:300px; height:auto;}
+  .gauge-needle{
+    transform-origin:100px 140px;
+    transform:rotate(96deg);
+    animation:pumpdown 2.6s cubic-bezier(.2,.8,.2,1) forwards;
+  }
+  @keyframes pumpdown{
+    0%{transform:rotate(96deg);}
+    100%{transform:rotate(-92deg);}
+  }
+  .gauge-readout{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.06em;
+    color:var(--ink-dim);
+    margin-top:10px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .gauge-led{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--ok);
+    opacity:0;
+    box-shadow:0 0 6px var(--ok);
+    animation:ledon .4s ease forwards;
+    animation-delay:2.6s;
+  }
+  @keyframes ledon{to{opacity:1;}}
+
+  /* ---------- Education ---------- */
+  .edu-block{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
+  .edu-school{font-size:13px; letter-spacing:0.05em; color:var(--paper-ink-dim); margin-bottom:6px; font-family:var(--mono); text-transform:uppercase;}
+  .edu-degree{font-family:var(--display); font-weight:700; font-size:26px; text-transform:uppercase; margin-bottom:8px;}
+  .edu-meta{font-family:var(--mono); font-size:13px; color:var(--paper-ink-dim); display:flex; gap:22px; margin-bottom:0;}
+  .edu-meta b{color:var(--paper-ink); font-weight:600;}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;}
+  .chip{
+    font-family:var(--mono);
+    font-size:11.5px;
+    letter-spacing:0.02em;
+    padding:6px 11px;
+    border:1px solid var(--paper-edge);
+    color:var(--paper-ink-dim);
+    background:rgba(255,255,255,0.35);
+  }
+  .coursework-label{font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--paper-ink-dim); margin-bottom:10px;}
+
+  /* ---------- BOM / skills ---------- */
+  .bom-table{width:100%; border-collapse:collapse; font-size:14px;}
+  .bom-table thead th{
+    font-family:var(--mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    text-align:left;
+    color:var(--ink-dim);
+    border-bottom:1px solid var(--blue-line-strong);
+    padding:10px 14px;
+  }
+  .bom-table td{
+    padding:16px 14px;
+    border-bottom:1px solid var(--blue-line);
+    vertical-align:top;
+  }
+  .bom-item{font-family:var(--mono); color:var(--hazard); font-weight:600; white-space:nowrap;}
+  .bom-cat{font-family:var(--display); font-weight:700; letter-spacing:0.02em; text-transform:uppercase; white-space:nowrap; padding-right:8px;}
+  .bom-desc{color:var(--ink-dim); line-height:1.6;}
+  .bom-desc b{color:var(--ink); font-weight:600;}
+
+  /* ---------- Leadership ---------- */
+  .lead-grid{display:grid; grid-template-columns:1fr 1fr; gap:36px;}
+  .lead-card{border:1px solid var(--paper-edge); padding:26px 24px; background:rgba(255,255,255,0.3);}
+  .lead-org{font-family:var(--display); font-weight:700; font-size:20px; text-transform:uppercase;}
+  .lead-role{font-family:var(--mono); font-size:12.5px; color:var(--hazard-dim); margin:4px 0 14px; letter-spacing:0.03em;}
+  .lead-card ul{display:flex; flex-direction:column; gap:9px;}
+  .lead-card li{font-size:14.5px; line-height:1.55; padding-left:16px; position:relative;}
+  .lead-card li::before{content:"–"; position:absolute; left:0; color:var(--paper-ink-dim);}
+
+  /* ---------- Projects ---------- */
+  .proj-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  .proj-card{
+    border:1px solid var(--blue-line-strong);
+    background:rgba(237,241,237,0.02);
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    transition:transform .18s ease, border-color .18s ease, background .18s ease;
+  }
+  .proj-card:hover{transform:translateY(-4px); border-color:var(--hazard); background:rgba(226,98,44,0.05);}
+  .proj-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 16px;
+    border-bottom:1px solid var(--blue-line-strong);
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.07em;
+    text-transform:uppercase;
+    color:var(--ink-dim);
+  }
+  .proj-head b{color:var(--hazard);}
+  .proj-body{padding:22px 22px 24px; display:flex; gap:18px;}
+  .proj-icon{flex:0 0 auto; width:46px; height:46px; color:var(--hazard); opacity:0.9;}
+  .proj-icon svg{width:100%; height:100%;}
+  .proj-text{flex:1;}
+  .proj-title{font-family:var(--display); font-weight:700; font-size:19px; text-transform:uppercase; margin-bottom:2px;}
+  .proj-dates{font-family:var(--mono); font-size:11.5px; color:var(--ink-dim); margin-bottom:12px; letter-spacing:0.02em;}
+  .proj-text ul{display:flex; flex-direction:column; gap:8px;}
+  .proj-text li{font-size:13.5px; line-height:1.55; color:var(--ink-dim); padding-left:14px; position:relative;}
+  .proj-text li::before{content:"›"; position:absolute; left:0; color:var(--hazard);}
+  .detail-callout{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-top:16px;
+    padding-top:14px;
+    border-top:1px dashed var(--blue-line-strong);
+  }
+  .detail-callout__diagram{width:74px; height:48px; flex:0 0 auto; color:var(--ink-dim);}
+  .detail-callout__caption{font-size:12px; line-height:1.5; color:var(--ink-dim);}
+  .detail-callout__caption .eyebrow{display:block; color:var(--hazard); margin-bottom:4px;}
+
+  /* ---------- Honors ---------- */
+  .honors-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:22px;}
+  .stamp{
+    border:2px solid var(--paper-ink);
+    border-radius:50%;
+    aspect-ratio:1;
+    width:128px;
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    transform:rotate(-6deg);
+    padding:10px;
+  }
+  .honor-row{display:flex; align-items:center; gap:22px; border-bottom:1px solid var(--paper-edge); padding:20px 4px;}
+  .honor-row:last-child{border-bottom:none;}
+  .stamp-text{font-family:var(--mono); font-size:10px; letter-spacing:0.04em; text-transform:uppercase; line-height:1.35;}
+  .honor-body b{font-family:var(--display); display:block; font-size:16.5px; text-transform:uppercase; margin-bottom:4px; font-weight:700;}
+  .honor-body span{font-size:13.5px; color:var(--paper-ink-dim); line-height:1.5;}
+
+  /* ---------- Contact / footer ---------- */
+  .contact-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px;}
+  .contact-list{display:flex; flex-direction:column; gap:16px; margin-top:18px;}
+  .contact-list a{
+    display:flex;
+    justify-content:space-between;
+    text-decoration:none;
+    font-family:var(--mono);
+    font-size:14px;
+    border-bottom:1px solid var(--blue-line);
+    padding-bottom:12px;
+    color:var(--ink);
+  }
+  .contact-list a span{color:var(--ink-dim);}
+  .contact-list a:hover{color:var(--hazard);}
+  .contact-list a:hover span{color:var(--hazard);}
+  .rev-table{width:100%; border-collapse:collapse; font-family:var(--mono); font-size:11.5px; margin-top:14px;}
+  .rev-table th{text-align:left; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.08em; font-size:10.5px; padding:6px 10px; border-bottom:1px solid var(--blue-line-strong);}
+  .rev-table td{padding:9px 10px; border-bottom:1px solid var(--blue-line); color:var(--ink-dim);}
+  .rev-table td.rev{color:var(--hazard); font-weight:600;}
+  .footer-note{margin-top:40px; font-family:var(--mono); font-size:11px; color:var(--ink-dim); letter-spacing:0.03em;}
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 860px){
+    .sheet-index{
+      width:100%; height:var(--bar-h);
+      top:0; left:0; right:0; bottom:auto;
+      flex-direction:row;
+      border-right:none;
+      border-bottom:1px solid var(--blue-line-strong);
+    }
+    .sheet-index__brand{border-bottom:none; border-right:1px solid var(--blue-line-strong); padding:0 16px; display:flex; align-items:center;}
+    .sheet-index__list{display:flex; flex-direction:row; overflow-x:auto; padding:0;}
+    .sheet-index__list a{padding:0 14px; height:var(--bar-h); border-left:none; border-bottom:2px solid transparent; white-space:nowrap;}
+    .sheet-index__list a.is-active{border-left:none; border-bottom-color:var(--hazard);}
+    .sheet-index__foot{display:none;}
+    main{margin-left:0; padding-top:var(--bar-h);}
+    .sheet{scroll-margin-top:calc(var(--bar-h) + 12px); padding:48px 6vw 56px;}
+    .cover-grid, .edu-block, .lead-grid, .proj-grid, .contact-grid{grid-template-columns:1fr; gap:32px;}
+    .honors-grid{grid-template-columns:1fr;}
+    .sheet__bar-field{flex:1 1 45%;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .gauge-needle{animation:none; transform:rotate(-92deg);}
+    .gauge-led{animation:none; opacity:1;}
+    .proj-card{transition:none;}
+    .btn{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="sheet-index" aria-label="Section navigation">
+  <div class="sheet-index__brand">R<span>N</span>.</div>
+  <ol class="sheet-index__list">
+    <li><a href="#cover" data-target="cover"><span class="sheet-index__num">00</span> Cover</a></li>
+    <li><a href="#education" data-target="education"><span class="sheet-index__num">01</span> Education</a></li>
+    <li><a href="#skills" data-target="skills"><span class="sheet-index__num">02</span> Skills</a></li>
+    <li><a href="#leadership" data-target="leadership"><span class="sheet-index__num">03</span> Leadership</a></li>
+    <li><a href="#projects" data-target="projects"><span class="sheet-index__num">04</span> Projects</a></li>
+    <li><a href="#honors" data-target="honors"><span class="sheet-index__num">05</span> Honors</a></li>
+    <li><a href="#contact" data-target="contact"><span class="sheet-index__num">06</span> Contact</a></li>
+  </ol>
+  <div class="sheet-index__foot">DWG SET<br>PORTFOLIO&nbsp;V1</div>
+</nav>
+
+<main>
+
+  <!-- 00 COVER -->
+  <section id="cover" class="sheet sheet--blue sheet--cover">
+    <div class="sheet__inner cover-grid">
+      <div>
+        <div class="id-frame">
+          <img src="rodrigo-headshot.png" alt="Rodrigo Noriega">
+          <span class="id-frame__corner id-frame__corner--tl"></span>
+          <span class="id-frame__corner id-frame__corner--tr"></span>
+          <span class="id-frame__corner id-frame__corner--bl"></span>
+          <span class="id-frame__corner id-frame__corner--br"></span>
+        </div>
+        <p class="eyebrow" style="color:var(--ink-dim)">PORTFOLIO — SHEET 00 OF 06</p>
+        <h1 class="cover-name">RODRIGO<br>NORIEGA</h1>
+        <p class="cover-role">AEROSPACE ENGINEERING — UNIVERSITY OF CALIFORNIA, IRVINE</p>
+        <p class="cover-desc">I build, test, and tune hardware — running pump-down sequences in a thermal vacuum chamber, verifying wing geometry on a 1918 biplane restoration, and tuning PD control loops for an autonomous robot. B.S. Aerospace Engineering, Class of 2027.</p>
+        <div class="cover-cta">
+          <a class="btn btn--solid" href="#projects">View Projects</a>
+          <a class="btn btn--ghost" href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="gauge-wrap">
+        <svg viewBox="0 0 200 170" role="img" aria-label="Chamber pressure gauge animating from atmospheric to vacuum">
+          <circle cx="100" cy="140" r="82" fill="none" stroke="var(--blue-line-strong)" stroke-width="1"/>
+          <circle cx="100" cy="140" r="64" fill="none" stroke="var(--blue-line)" stroke-width="1"/>
+          <g stroke="var(--ink-dim)" stroke-width="2">
+            <line x1="100" y1="56" x2="100" y2="66" transform="rotate(-110 100 140)"/>
+            <line x1="100" y1="56" x2="100" y2="66" transform="rotate(-82.5 100 140)"/>
+            <line x1="100" y1="56" x2="100" y2="66" transform="rotate(-55 100 140)"/>
+            <line x1="100" y1="56" x2="100" y2="66" transform="rotate(-27.5 100 140)"/>
+            <line x1="100" y1="56" x2="100" y2="66" transform="rotate(0 100 140)"/>
+            <line x1="100" y1="56" x2="100" y2="66" transform="rotate(27.5 100 140)"/>
+            <line x1="100" y1="56" x2="100" y2="66" transform="rotate(55 100 140)"/>
+            <line x1="100" y1="56" x2="100" y2="66" transform="rotate(82.5 100 140)"/>
+            <line x1="100" y1="56" x2="100" y2="66" transform="rotate(110 100 140)"/>
+          </g>
+          <text x="38" y="150" fill="var(--ink-dim)" font-family="IBM Plex Mono" font-size="9">VAC</text>
+          <text x="150" y="150" fill="var(--ink-dim)" font-family="IBM Plex Mono" font-size="9">ATM</text>
+          <g class="gauge-needle">
+            <line x1="100" y1="140" x2="100" y2="58" stroke="var(--hazard)" stroke-width="3" stroke-linecap="round"/>
+            <line x1="100" y1="140" x2="100" y2="160" stroke="var(--hazard-dim)" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <circle cx="100" cy="140" r="6" fill="var(--ink)"/>
+          <text x="100" y="14" text-anchor="middle" fill="var(--ink-dim)" font-family="IBM Plex Mono" font-size="10" letter-spacing="1">CHAMBER PRESSURE</text>
+        </svg>
+        <div class="gauge-readout"><span class="gauge-led"></span> PUMP-DOWN NOMINAL · TORR</div>
+      </div>
+    </div>
+    <div class="sheet__bar" style="margin-top:56px;">
+      <div class="sheet__bar-field">DRAWN BY <b>R. NORIEGA</b></div>
+      <div class="sheet__bar-field">LOCATION <b>IRVINE, CA</b></div>
+      <div class="sheet__bar-field">ENGINEERING GPA <b>3.55</b></div>
+      <div class="sheet__bar-field">STATUS <b>CLASS OF 2027</b></div>
+    </div>
+  </section>
+
+  <!-- 01 EDUCATION -->
+  <section id="education" class="sheet sheet--paper">
+    <div class="sheet__inner">
+      <div class="sheet__bar">
+        <div class="sheet__bar-field">SHEET <b>01 / 06</b></div>
+        <div class="sheet__bar-field">TITLE <b>EDUCATION</b></div>
+        <div class="sheet__bar-field">SCALE <b>NTS</b></div>
+        <div class="sheet__bar-field">REV <b>A</b></div>
+      </div>
+      <h2 class="sheet__title">Education</h2>
+      <div class="edu-block">
+        <div>
+          <p class="edu-school">University of California, Irvine — Irvine, CA</p>
+          <h3 class="edu-degree">B.S. Aerospace Engineering</h3>
+          <p class="edu-meta"><span>Expected graduation <b>2027</b></span><span>Engineering GPA <b>3.55</b></span></p>
+        </div>
+        <div>
+          <p class="coursework-label">Relevant Coursework</p>
+          <div class="chips">
+            <span class="chip">Lightweight Structures</span>
+            <span class="chip">Dynamics &amp; Control of Aerospace Vehicles</span>
+            <span class="chip">Aircraft Performance</span>
+            <span class="chip">Control Systems</span>
+            <span class="chip">Fluid Dynamics &amp; Mechanics</span>
+            <span class="chip">Mechanics of Structures</span>
+            <span class="chip">Material Science</span>
+            <span class="chip">Aerodynamics</span>
+            <span class="chip">Thermodynamics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 SKILLS (BOM) -->
+  <section id="skills" class="sheet sheet--blue">
+    <div class="sheet__inner">
+      <div class="sheet__bar">
+        <div class="sheet__bar-field">SHEET <b>02 / 06</b></div>
+        <div class="sheet__bar-field">TITLE <b>SKILLS — BILL OF MATERIALS</b></div>
+        <div class="sheet__bar-field">SCALE <b>NTS</b></div>
+        <div class="sheet__bar-field">REV <b>A</b></div>
+      </div>
+      <h2 class="sheet__title">Skills</h2>
+      <table class="bom-table">
+        <thead>
+          <tr><th>Item</th><th>Category</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="bom-item">001</td>
+            <td class="bom-cat">Languages</td>
+            <td class="bom-desc"><b>Fluent</b> in English and Spanish — Seal of Biliteracy.</td>
+          </tr>
+          <tr>
+            <td class="bom-item">002</td>
+            <td class="bom-cat">Computer</td>
+            <td class="bom-desc"><b>MATLAB · SolidWorks · Onshape · Excel · C++ · Python · Arduino · SketchUp · JavaScript · Cursor · GitHub</b></td>
+          </tr>
+          <tr>
+            <td class="bom-item">003</td>
+            <td class="bom-cat">Manufacturing</td>
+            <td class="bom-desc"><b>3D printing · angle grinder · miter saw · soldering · GD&amp;T · laser cutting · welding · hand tools</b></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 03 LEADERSHIP -->
+  <section id="leadership" class="sheet sheet--paper">
+    <div class="sheet__inner">
+      <div class="sheet__bar">
+        <div class="sheet__bar-field">SHEET <b>03 / 06</b></div>
+        <div class="sheet__bar-field">TITLE <b>LEADERSHIP</b></div>
+        <div class="sheet__bar-field">SCALE <b>NTS</b></div>
+        <div class="sheet__bar-field">REV <b>A</b></div>
+      </div>
+      <h2 class="sheet__title">Leadership</h2>
+      <div class="lead-grid">
+        <div class="lead-card">
+          <h3 class="lead-org">Kappa Sigma Fraternity</h3>
+          <p class="lead-role">VICE PRESIDENT — DEC 2025 – PRESENT</p>
+          <ul>
+            <li>Elected Vice President, supporting executive leadership, governance, and chapter operations.</li>
+            <li>Led Code of Conduct enforcement, by-law compliance, and academic accountability initiatives across the chapter.</li>
+            <li>Collaborated with executive officers, alumni advisors, and national leadership to ensure operational and policy alignment.</li>
+          </ul>
+        </div>
+        <div class="lead-card">
+          <h3 class="lead-org">ACE Mentor Program</h3>
+          <p class="lead-role">MENTOR &amp; PARTICIPANT — JAN 2023 – PRESENT · TORRANCE, CA</p>
+          <ul>
+            <li>Engaged with industry professionals on multidisciplinary projects, integrating engineering and construction perspectives.</li>
+            <li>Mentored students interested in engineering and STEM, providing guidance on design thinking and problem-solving.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 PROJECTS -->
+  <section id="projects" class="sheet sheet--blue">
+    <div class="sheet__inner">
+      <div class="sheet__bar">
+        <div class="sheet__bar-field">SHEET <b>04 / 06</b></div>
+        <div class="sheet__bar-field">TITLE <b>PROJECT EXPERIENCE</b></div>
+        <div class="sheet__bar-field">SCALE <b>NTS</b></div>
+        <div class="sheet__bar-field">REV <b>A</b></div>
+      </div>
+      <h2 class="sheet__title">Projects</h2>
+      <div class="proj-grid">
+
+        <div class="proj-card">
+          <div class="proj-head"><span>DWG <b>P-01</b></span><span>SEPT 2025 – PRESENT</span></div>
+          <div class="proj-body">
+            <div class="proj-icon">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><circle cx="24" cy="26" r="16"/><line x1="24" y1="26" x2="24" y2="14"/><line x1="24" y1="26" x2="32" y2="30"/><circle cx="24" cy="26" r="2" fill="currentColor"/><line x1="24" y1="6" x2="24" y2="9"/></svg>
+            </div>
+            <div class="proj-text">
+              <p class="proj-title">UCI Spacecraft Thermal Management Systems</p>
+              <p class="proj-dates">Thermal Vacuum Chamber Lead Engineer</p>
+              <ul>
+                <li>Operate and maintain a thermal vacuum chamber across 15+ minute cycles, achieving rough-vacuum conditions of 17–20 mTorr and supporting VED testing under spacelike environments.</li>
+                <li>Conduct pressure-transient experiments analyzing vacuum-system behavior, identifying 100×+ pressure increases after pump isolation and evaluating outgassing, virtual leaks, thermal equilibration, and instrumentation effects.</li>
+                <li>Design a 10–15 layer Multi-Layer Insulation (MLI) system using double-aluminized Mylar, Kapton, and spacer materials to improve thermal isolation — see Detail A.</li>
+              </ul>
+              <div class="detail-callout">
+                <svg class="detail-callout__diagram" viewBox="0 0 100 64" fill="none">
+                  <rect x="8" y="6" width="46" height="5" fill="#C7CDD2"/>
+                  <rect x="8" y="13" width="46" height="3" fill="#B6824A"/>
+                  <rect x="8" y="18" width="46" height="5" fill="#C7CDD2"/>
+                  <rect x="8" y="25" width="46" height="3" fill="#B6824A"/>
+                  <rect x="8" y="30" width="46" height="5" fill="#C7CDD2"/>
+                  <rect x="8" y="37" width="46" height="3" fill="#B6824A"/>
+                  <rect x="8" y="42" width="46" height="5" fill="#C7CDD2"/>
+                  <rect x="8" y="49" width="46" height="3" fill="#B6824A"/>
+                  <rect x="8" y="54" width="46" height="5" fill="#C7CDD2"/>
+                  <path d="M58 6 V59" stroke="currentColor" stroke-width="1"/>
+                  <path d="M58 6 H64 M58 59 H64" stroke="currentColor" stroke-width="1"/>
+                  <text x="68" y="14" fill="currentColor" font-family="IBM Plex Mono" font-size="6">×10–15</text>
+                  <text x="68" y="34" fill="currentColor" font-family="IBM Plex Mono" font-size="5.5">LAYERS</text>
+                </svg>
+                <p class="detail-callout__caption"><span class="eyebrow">DETAIL A — MLI LAYUP</span>Alternating double-aluminized Mylar (reflective) and Kapton + spacer (low-conductance standoff) layers.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-head"><span>DWG <b>P-02</b></span><span>JAN 2025 – PRESENT</span></div>
+          <div class="proj-body">
+            <div class="proj-icon">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="20" x2="44" y2="20"/><line x1="10" y1="30" x2="38" y2="30"/><line x1="24" y1="14" x2="24" y2="36"/><line x1="14" y1="20" x2="14" y2="30"/><line x1="34" y1="20" x2="34" y2="30"/><circle cx="24" cy="25" r="3"/></svg>
+            </div>
+            <div class="proj-text">
+              <p class="proj-title">FLAM@UCI — Flying Leatherneck Aviation Museum Restoration</p>
+              <p class="proj-dates">Main Wings Engineer · 1918 Curtiss JN-4D Biplane</p>
+              <ul>
+                <li>Engineer on a museum-quality restoration, applying structural analysis, drawing interpretation, and precision fabrication within a multi-quarter project.</li>
+                <li>Develop and refine CAD models while validating historical technical drawings for wooden and metal wing assemblies, verifying spar geometry.</li>
+                <li>Lead part documentation and BOM updates, tracking rib locations and hinge components for build continuity.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-head"><span>DWG <b>P-03</b></span><span>JAN 2026 – MAR 2026</span></div>
+          <div class="proj-body">
+            <div class="proj-icon">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><rect x="14" y="14" width="20" height="20" rx="2"/><path d="M19 24c1.5-4 3-4 4.5 0s3 4 4.5 0"/><line x1="14" y1="8" x2="14" y2="14"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="28" y1="8" x2="28" y2="14"/><line x1="34" y1="8" x2="34" y2="14"/><line x1="14" y1="34" x2="14" y2="40"/><line x1="34" y1="34" x2="34" y2="40"/></svg>
+            </div>
+            <div class="proj-text">
+              <p class="proj-title">UCI Autonomous Robot</p>
+              <p class="proj-dates">Controls Engineer</p>
+              <ul>
+                <li>Designed and implemented a proportional-derivative (PD) control system in Arduino to regulate steering and propulsion, tuning gains for heading stability.</li>
+                <li>Led full system integration: chassis fabrication, electrical wiring schematics, sensor-actuator interfacing, and embedded code development.</li>
+                <li>Validated performance through iterative testing under competition-driven constraints.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-head"><span>DWG <b>P-04</b></span><span>SEPT 2021 – JUN 2022</span></div>
+          <div class="proj-body">
+            <div class="proj-icon">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 28c8-10 32-10 40 0"/><path d="M8 28c6-6 26-6 32 0"/><line x1="24" y1="28" x2="24" y2="38"/></svg>
+            </div>
+            <div class="proj-text">
+              <p class="proj-title">Project Lead the Way — Aerospace Engineering</p>
+              <p class="proj-dates">Team Lead · Torrance, CA</p>
+              <ul>
+                <li>Designed and tested a model aircraft in CAD, reducing drag and improving aerodynamic efficiency via 30+ hours of X-Plane 12 simulation.</li>
+                <li>Presented performance results to peers and instructors, demonstrating measurable improvement.</li>
+                <li>Assembled and programmed a combat robot for competition using Arduino, optimizing for durability.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 HONORS -->
+  <section id="honors" class="sheet sheet--paper">
+    <div class="sheet__inner">
+      <div class="sheet__bar">
+        <div class="sheet__bar-field">SHEET <b>05 / 06</b></div>
+        <div class="sheet__bar-field">TITLE <b>HONORS &amp; ACCOMPLISHMENTS</b></div>
+        <div class="sheet__bar-field">SCALE <b>NTS</b></div>
+        <div class="sheet__bar-field">REV <b>A</b></div>
+      </div>
+      <h2 class="sheet__title">Honors</h2>
+
+      <div class="honor-row">
+        <div class="stamp"><div class="stamp-text">PRESIDENT'S<br>AWARD</div></div>
+        <div class="honor-body">
+          <b>President's Award for Educational Excellence</b>
+          <span>Awarded alongside the Project Lead the Way (PLTW) Scholar Student Certificate.</span>
+        </div>
+      </div>
+      <div class="honor-row">
+        <div class="stamp"><div class="stamp-text">PATHWAY<br>COMPLETE</div></div>
+        <div class="honor-body">
+          <b>Career Pathway Completer</b>
+          <span>Engineering &amp; Architecture industry sector.</span>
+        </div>
+      </div>
+      <div class="honor-row">
+        <div class="stamp"><div class="stamp-text">ACE LA<br>SCHOLAR</div></div>
+        <div class="honor-body">
+          <b>ACE Los Angeles Mentor Program Scholarship</b>
+          <span>$1,500 – $3,000 award.</span>
+        </div>
+      </div>
+      <div class="honor-row">
+        <div class="stamp"><div class="stamp-text">TTA<br>SCHOLAR</div></div>
+        <div class="honor-body">
+          <b>Torrance Teachers Association Scholarship</b>
+          <span>$1,000 award.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 CONTACT -->
+  <section id="contact" class="sheet sheet--blue sheet--contact">
+    <div class="sheet__inner">
+      <div class="sheet__bar">
+        <div class="sheet__bar-field">SHEET <b>06 / 06</b></div>
+        <div class="sheet__bar-field">TITLE <b>CONTACT</b></div>
+        <div class="sheet__bar-field">SCALE <b>NTS</b></div>
+        <div class="sheet__bar-field">REV <b>A</b></div>
+      </div>
+      <h2 class="sheet__title">Contact</h2>
+      <div class="contact-grid">
+        <div>
+          <p style="color:var(--ink-dim); max-width:440px; line-height:1.6; margin-bottom:8px;">Open to internships and project collaborations in aerospace, thermal systems, and controls. Reach out directly below.</p>
+          <div class="contact-list">
+            <a href="mailto:rodrigonorie2005@gmail.com">Email <span>rodrigonorie2005@gmail.com</span></a>
+            <a href="tel:4242058990">Phone <span>424-205-8990</span></a>
+            <a href="https://www.linkedin.com/in/rodrigo-noriega-b2b826326" target="_blank" rel="noopener">LinkedIn <span>/in/rodrigo-noriega-b2b826326</span></a>
+            <a href="#cover">Location <span>Irvine, CA</span></a>
+          </div>
+        </div>
+        <div>
+          <p class="eyebrow" style="color:var(--ink-dim); margin-bottom:10px;">REVISION HISTORY</p>
+          <table class="rev-table">
+            <thead><tr><th>Rev</th><th>Description</th><th>Date</th></tr></thead>
+            <tbody>
+              <tr><td class="rev">A</td><td>Initial release</td><td>2026</td></tr>
+              <tr><td class="rev">B</td><td>Updated experience &amp; skills</td><td>2026</td></tr>
+            </tbody>
+          </table>
+          <p class="footer-note">Built with HTML / CSS / JS · Hosted on GitHub Pages</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  // Active sheet highlighting in the index nav
+  const links = document.querySelectorAll('.sheet-index__list a');
+  const sections = document.querySelectorAll('.sheet');
+  const map = new Map();
+  links.forEach(l => map.set(l.dataset.target, l));
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const link = map.get(entry.target.id);
+      if (!link) return;
+      if (entry.isIntersecting){
+        links.forEach(l => l.classList.remove('is-active'));
+        link.classList.add('is-active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
